@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+      div {
+        margin-bottom: 3%;
+      }
+    </style>
+  </head>
+  <body>
+    <form
+      action={% if game is defined %} "/update/{{game.id}}" {% else %} "/create" {% endif %}
+      method="POST"
+      style="width: 50%; margin: auto; text-align: center"
+    >
+      <div>
+        <label for="">Titulo</label> <br />
+        <input type="text" name="title" placeholder="Titulo" {% if game is defined %} value="{{game.title}}" {% endif %} />
+      </div>
+      <div>
+        <label for="">Fecha de salida</label> <br />
+        <input type="text" name="release_year" placeholder="Fecha de salida" {% if game is defined %} value="{{game.release_year}}" {% endif %} />
+      </div>
+      <div>
+        <label for="">Desarrollador</label> <br />
+        <input type="text" name="developer" placeholder="Desarrollador" {% if game is defined %} value="{{game.developer}}" {% endif %} />
+      </div>
+      <div>
+        <label for="">Categoria</label> <br />
+        <select name="type_id">
+          {% for type in types %}
+          <option value="{{type.id}}" {% if type.id == game.type_id %} selected {% endif %}>{{ type.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <input type="submit" value="Enviar">
+      </div>
+    </form>
+  </body>
+</html>

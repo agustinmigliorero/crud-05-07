@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 80%;
+        margin: auto;
+        margin-top: 5%;
+      }
+
+      table,
+      td,
+      th,
+      tr {
+        border: 2px solid black;
+        border-collapse: collapse;
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Fecha de salida</th>
+          <th>Desarrollador</th>
+          <th>Categoria</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for game in games %}
+        <tr>
+          <td>{{ game.title }}</td>
+          <td>{{ game.release_year }}</td>
+          <td>{{ game.developer }}</td>
+          <td>{{ game.category }}</td>
+          <td>
+            <a href="/form/{{ game.id }}"><button>Editar 📂</button></a>
+            <form action="/delete/{{ game.id }}" method="POST">
+              <input type="submit" value="Borrar 🗑️" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
