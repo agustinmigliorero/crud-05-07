@@ -54,7 +54,7 @@ class UsersControllers {
             $usuario = $obj->getByEmail($datos["email"]);
 
             if (password_verify($datos["password"], $usuario["password"])) {
-                session_start();
+ 
                 $_SESSION["login"] = $datos["email"];
 
                 $response->getBody()->write("ESCRIBISTE BIEN LA CLAVE, ESTA TODO BIEN");
@@ -69,7 +69,7 @@ class UsersControllers {
     }
 
     public function logout($request, $response, $args) {
-        session_start();
+
         session_destroy();
         $response->getBody()->write("TE DESLOGEASTE");
         return $response;

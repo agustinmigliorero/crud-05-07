@@ -23,6 +23,9 @@
     </style>
   </head>
   <body>
+  {% if message != NULL %}
+  <h1 style="background-color: red; border-radius: 5px; width: 70%; margin: auto;">{{message}}</h1> 
+  {% endif %} 
     <table>
       <thead>
         <tr>

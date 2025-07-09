@@ -14,9 +14,16 @@ class GamesControllers {
             $games = $obj->getAll();
 
             $view = Twig::fromRequest($request);
+
+            $message = NULL;
+
+            if (isset($_SESSION["message"])) {
+                $message = $_SESSION["message"];
+                unset($_SESSION["message"]);
+            }
     
             return $view->render($response, 'index.twig', [
-                'games' => $games,
+                'games' => $games, "message" => $message
             ]);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
